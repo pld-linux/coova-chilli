@@ -55,6 +55,7 @@ fi
 %attr(754,root,root) /etc/init.d/chilli
 %doc AUTHORS COPYING ChangeLog INSTALL README doc/dictionary.chillispot doc/hotspotlogin.cgi
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/chilli.conf
+%dir %{_sysconfdir}/chilli
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/chilli/*
 %attr(755,root,root)%{_sysconfdir}/chilli/www/config.sh
 %dir %{_sysconfdir}/chilli/www
