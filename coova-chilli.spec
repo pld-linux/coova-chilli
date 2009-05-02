@@ -1,12 +1,12 @@
 Summary:	CoovaChilli - Software access controller
 Name:		coovachilli
-Version:	1.0.11
+Version:	1.0.12
 Release:	0.1
 License:	GPL
 Group:		Applications
 Source0:	http://ap.coova.org/chilli/coova-chilli-%{version}.tar.gz
-# Source0-md5:	d932dc9ca42b90d56ef27552f049c44a
-URL:		http://coova.org
+# Source0-md5:	365f46fe79b3d76432544d6bc5f37939
+URL:		http://coova.org/wiki/index.php/CoovaChilli
 BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -39,13 +39,13 @@ install -d $RPM_BUILD_ROOT/etc/rc.d
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/chkconfig --add %{name}
-%service %{name} restart
+/sbin/chkconfig --add chilli
+%service chilli restart
 
 %preun
 if [ "$1" = "0" ]; then
-	%service -q %{name} stop
-	/sbin/chkconfig --del %{name}
+	%service -q chilli stop
+	/sbin/chkconfig --del chilli
 fi
 
 %files
@@ -54,13 +54,11 @@ fi
 %attr(755,root,root) %{_libdir}/*.so*
 %attr(754,root,root) /etc/init.d/chilli
 %doc AUTHORS COPYING ChangeLog INSTALL README doc/dictionary.chillispot doc/hotspotlogin.cgi
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/chilli.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/chilli/*
-%dir %{_sysconfdir}/chilli
 %attr(755,root,root)%{_sysconfdir}/chilli/www/config.sh
-%{_sysconfdir}/chilli/www/*
-%{_sysconfdir}/chilli/wwwsh
-%{_sysconfdir}/chilli/functions
-%{_sysconfdir}/chilli/*.sh
+%dir %{_sysconfdir}/chilli/www
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/chilli/www/*
 %{_mandir}/man1/*.1*
 %{_mandir}/man5/*.5*
 %{_mandir}/man8/*.8*
