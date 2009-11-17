@@ -7,6 +7,7 @@ Group:		Applications
 Source0:	http://ap.coova.org/chilli/coova-chilli-%{version}.tar.gz
 # Source0-md5:	365f46fe79b3d76432544d6bc5f37939
 URL:		http://coova.org/wiki/index.php/CoovaChilli
+BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
