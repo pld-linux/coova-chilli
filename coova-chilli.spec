@@ -1,11 +1,11 @@
 Summary:	CoovaChilli - Software access controller
 Name:		coovachilli
-Version:	1.0.12
+Version:	1.2.4
 Release:	0.1
 License:	GPL
 Group:		Applications
 Source0:	http://ap.coova.org/chilli/coova-chilli-%{version}.tar.gz
-# Source0-md5:	365f46fe79b3d76432544d6bc5f37939
+# Source0-md5:	6d942a731da07b029a1be0b58d7917d6
 URL:		http://coova.org/wiki/index.php/CoovaChilli
 BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.228
