@@ -6,6 +6,7 @@ License:	GPL
 Group:		Applications
 Source0:	http://ap.coova.org/chilli/coova-chilli-%{version}.tar.gz
 # Source0-md5:	6d942a731da07b029a1be0b58d7917d6
+Patch0:		%{name}-limits.patch
 URL:		http://coova.org/wiki/index.php/CoovaChilli
 BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.228
@@ -23,6 +24,8 @@ more at http://coova.org/ and http://www.chillispot.org/.
 
 %prep
 %setup -q -n coova-chilli-%{version}
+
+%patch0 -p1
 
 %build
 %configure
