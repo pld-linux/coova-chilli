@@ -25,6 +25,30 @@ standard for secure roamable networks. Authentication, Authorization
 and Accounting (AAA) is handled by your favorite radius server. Read
 more at http://coova.org/ and http://www.chillispot.org/.
 
+%package devel
+Summary:	Header files for coovachili library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki coovachilli
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+
+%description devel
+Header files for coovachilli library.
+
+%description devel -l pl.UTF-8
+Pliki nagłówkowe biblioteki coovachilli.
+
+%package static
+Summary:	Static coovachilli library
+Summary(pl.UTF-8):	Statyczna biblioteka coovachilli
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static coovachilli library.
+
+%description static -l pl.UTF-8
+Statyczna biblioteka coovachilli.
+
 %prep
 %setup -q -n coova-chilli-%{version}
 
@@ -47,6 +71,8 @@ install -d $RPM_BUILD_ROOT/etc/rc.d
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+mv $RPM_BUILD_ROOT/etc/init.d $RPM_BUILD_ROOT/etc/rc.d
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -64,7 +90,11 @@ fi
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/*
 %attr(755,root,root) %{_libdir}/*.so*
-%attr(754,root,root) /etc/init.d/chilli
+%attr(755,root,root) %ghost %{_libdir}/libbstring.so.0
+%attr(755,root,root) %{_libdir}/libbstring.so.0.0.0
+%attr(755,root,root) %ghost %{_libdir}/libchilli.so.0
+%attr(755,root,root) %{_libdir}/libchilli.so.0.0.0
+%attr(754,root,root) /etc/rc.d/init.d/chilli
 %doc AUTHORS COPYING ChangeLog INSTALL README doc/dictionary.chillispot doc/hotspotlogin.cgi
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/chilli.conf
 %dir %{_sysconfdir}/chilli
@@ -75,3 +105,14 @@ fi
 %{_mandir}/man1/*.1*
 %{_mandir}/man5/*.5*
 %{_mandir}/man8/*.8*
+
+%files devel
+%defattr(644,root,root,755)
+%{_libdir}/*.la
+%{_libdir}/libbstring.so
+%{_libdir}/libchilli.so
+%{_includedir}/chilli
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/*.a
