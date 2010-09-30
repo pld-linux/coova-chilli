@@ -1,0 +1,20 @@
+--- coova-chilli-1.2.4/src/chilli.c.orig	2010-08-24 13:29:08.000000000 +0200
++++ coova-chilli-1.2.4/src/chilli.c	2010-09-30 13:26:40.000000000 +0200
+@@ -966,8 +966,15 @@
+ 
+     strncpy(appconn->s_state.redir.username, mac, USERNAMESIZE);
+ 
+-    if (_options.macsuffix)
+-      strncat(appconn->s_state.redir.username, _options.macsuffix, USERNAMESIZE);
++    if (_options.macsuffix) {
++      size_t ulen = strlen(appconn->s_state.redir.username + ulen);
++      size_t size = USERNAMESIZE - ulen;
++
++      if (size) {
++        appconn->s_state.redir.username[--size + ulen] = '\0';
++        strncpy(appconn->s_state.redir.username + ulen, _options.macsuffix, size);
++      }
++    }
+   
+     username = appconn->s_state.redir.username;
+   } else {
