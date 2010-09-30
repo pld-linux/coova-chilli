@@ -8,6 +8,9 @@ Source0:	http://ap.coova.org/chilli/coova-chilli-%{version}.tar.gz
 # Source0-md5:	6d942a731da07b029a1be0b58d7917d6
 Patch0:		%{name}-strncpy.patch
 URL:		http://coova.org/wiki/index.php/CoovaChilli
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
@@ -28,6 +31,11 @@ more at http://coova.org/ and http://www.chillispot.org/.
 %patch0 -p1
 
 %build
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure
 %{__make}
 
