@@ -7,7 +7,7 @@ Group:		Applications
 Source0:	http://ap.coova.org/chilli/coova-chilli-%{version}.tar.gz
 # Source0-md5:	6d942a731da07b029a1be0b58d7917d6
 Patch0:		%{name}-strncpy.patch
-URL:		http://coova.org/wiki/index.php/CoovaChilli
+URL:		http://coova.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
