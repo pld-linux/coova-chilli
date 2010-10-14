@@ -1,13 +1,14 @@
+%define subver r387
+%define rel 1
 Summary:	CoovaChilli - Software access controller
 Name:		coovachilli
 Version:	1.2.4
-Release:	0.1
+Release:	0.%{subver}.%{rel}
 License:	GPL
 Group:		Applications
-Source0:	http://ap.coova.org/chilli/coova-chilli-%{version}.tar.gz
-# Source0-md5:	6d942a731da07b029a1be0b58d7917d6
-Patch0:		%{name}-strncpy.patch
-Patch1:		%{name}-link.patch
+Source0:	coova-chilli-%{subver}.tar.gz
+# Source0-md5:	82b91d07b266fffa2d075240c4d7b312
+Patch0:		%{name}-link.patch
 URL:		http://coova.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -51,9 +52,9 @@ Static coovachilli library.
 Statyczna biblioteka coovachilli.
 
 %prep
-%setup -q -n coova-chilli-%{version}
+%setup -q -n coova-chilli-%{subver}
+
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
