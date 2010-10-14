@@ -7,6 +7,7 @@ Group:		Applications
 Source0:	http://ap.coova.org/chilli/coova-chilli-%{version}.tar.gz
 # Source0-md5:	6d942a731da07b029a1be0b58d7917d6
 Patch0:		%{name}-strncpy.patch
+Patch1:		%{name}-link.patch
 URL:		http://coova.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -51,8 +52,8 @@ Statyczna biblioteka coovachilli.
 
 %prep
 %setup -q -n coova-chilli-%{version}
-
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
