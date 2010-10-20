@@ -1,0 +1,17 @@
+--- coova-chilli-1.2.5/conf/defaults.in~	2010-03-02 13:03:37.000000000 +0100
++++ coova-chilli-1.2.5/conf/defaults.in	2010-10-20 20:03:35.000000000 +0200
+@@ -169,12 +169,12 @@
+ #   by chilli with url /www/<file name>. Only extentions like .html
+ #   .jpg, .gif, .png, .js are allowed. See below for using .chi as a
+ #   CGI extension.
+-HS_WWWDIR=@ETCCHILLI@/www
++HS_WWWDIR=/var/lib/coova-chilli/www
+ 
+ #   Using this option assumes 'haserl' is installed per-default
+ #   but, and CGI type program can ran from wwwsh to process requests
+ #   to chilli with url /www/filename.chi
+-HS_WWWBIN=@ETCCHILLI@/wwwsh
++HS_WWWBIN=/usr/bin/haserl
+ 
+ #   Some configurations used in certain user interfaces
+ #
