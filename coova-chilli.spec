@@ -90,8 +90,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_sbindir}/*
-%attr(755,root,root) %{_libdir}/*.so*
+%attr(755,root,root) %{_sbindir}/chilli
 %attr(755,root,root) %ghost %{_libdir}/libbstring.so.0
 %attr(755,root,root) %{_libdir}/libbstring.so.0.0.0
 %attr(755,root,root) %ghost %{_libdir}/libchilli.so.0
@@ -100,10 +99,16 @@ fi
 %doc AUTHORS COPYING ChangeLog INSTALL README doc/dictionary.chillispot doc/hotspotlogin.cgi
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/chilli.conf
 %dir %{_sysconfdir}/chilli
+%attr(755,root,root) %{_sbindir}/chilli_opt
+%attr(755,root,root) %{_sbindir}/chilli_query
+%attr(755,root,root) %{_sbindir}/chilli_radconfig
+%attr(755,root,root) %{_sbindir}/chilli_response
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/chilli/*
 %attr(755,root,root)%{_sysconfdir}/chilli/www/config.sh
+%if 0
 %dir %{_sysconfdir}/chilli/www
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/chilli/www/*
+%endif
 %{_mandir}/man1/*.1*
 %{_mandir}/man5/*.5*
 %{_mandir}/man8/*.8*
