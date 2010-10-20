@@ -17,6 +17,8 @@ Suggests:	haserl
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define	skip_post_check_so	libchilli.so.0.0.0
+
 %description
 Coova-Chilli is a fork of the ChilliSpot project - an open source
 captive portal or wireless LAN access point controller. It supports
