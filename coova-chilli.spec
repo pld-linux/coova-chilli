@@ -1,12 +1,12 @@
-Summary:	CoovaChilli - Software access controller
-Name:		coovachilli
+Summary:	CoovaChilli - Software access controller for hotspots
+Name:		coova-chilli
 Version:	1.2.5
 Release:	0.1
 License:	GPL
 Group:		Applications
 Source0:	http://ap.coova.org/chilli/coova-chilli-%{version}.tar.gz
 # Source0-md5:	1b890cb043b4340e1f15c2b2cff742d3
-Patch0:		%{name}-link.patch
+Patch0:		link.patch
 URL:		http://coova.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
