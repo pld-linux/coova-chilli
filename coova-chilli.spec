@@ -28,6 +28,19 @@ standard for secure roamable networks. Authentication, Authorization
 and Accounting (AAA) is handled by your favorite radius server. Read
 more at http://coova.org/ and http://www.chillispot.org/.
 
+%package -n python-coova-chilli
+Summary:	Python library for CoovaChilli
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+Requires:	python-libs
+Requires:	python-modules
+Requires:	python-pycairo
+Requires:	python-pygobject
+Requires:	python-pygtk-gtk
+
+%description -n python-coova-chilli
+Python library for CoovaChilli.
+
 %package devel
 Summary:	Header files for coovachili library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki coovachilli
@@ -75,6 +88,10 @@ install -d $RPM_BUILD_ROOT/etc/rc.d
 
 mv $RPM_BUILD_ROOT/etc/init.d $RPM_BUILD_ROOT/etc/rc.d
 
+%py_ocomp $RPM_BUILD_ROOT%{py_sitescriptdir}
+%py_comp $RPM_BUILD_ROOT%{py_sitescriptdir}
+%py_postclean
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -112,6 +129,9 @@ fi
 %{_mandir}/man1/*.1*
 %{_mandir}/man5/*.5*
 %{_mandir}/man8/*.8*
+
+%files -n python-%{name}
+/usr/lib/python/CoovaChilliLib.py
 
 %files devel
 %defattr(644,root,root,755)
