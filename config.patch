@@ -5,7 +5,7 @@
  #   .jpg, .gif, .png, .js are allowed. See below for using .chi as a
  #   CGI extension.
 -HS_WWWDIR=@ETCCHILLI@/www
-+HS_WWWDIR=/var/lib/coova-chilli/www
++HS_WWWDIR=/usr/share/coova-chilli/www
  
  #   Using this option assumes 'haserl' is installed per-default
  #   but, and CGI type program can ran from wwwsh to process requests
