@@ -1,13 +1,12 @@
 Summary:	CoovaChilli - Software access controller
 Name:		coovachilli
-Version:	1.2.4
+Version:	1.2.5
 Release:	0.1
 License:	GPL
 Group:		Applications
 Source0:	http://ap.coova.org/chilli/coova-chilli-%{version}.tar.gz
-# Source0-md5:	6d942a731da07b029a1be0b58d7917d6
-Patch0:		%{name}-strncpy.patch
-Patch1:		%{name}-link.patch
+# Source0-md5:	1b890cb043b4340e1f15c2b2cff742d3
+Patch0:		%{name}-link.patch
 URL:		http://coova.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -54,7 +53,6 @@ Statyczna biblioteka coovachilli.
 %prep
 %setup -q -n coova-chilli-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
