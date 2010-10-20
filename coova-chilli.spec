@@ -4,16 +4,16 @@ Version:	1.2.5
 Release:	0.1
 License:	GPL
 Group:		Applications
-Source0:	http://ap.coova.org/chilli/coova-chilli-%{version}.tar.gz
+Source0:	http://ap.coova.org/chilli/%{name}-%{version}.tar.gz
 # Source0-md5:	1b890cb043b4340e1f15c2b2cff742d3
 Patch0:		link.patch
+Patch1:		config.patch
 URL:		http://coova.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.228
-Suggests:	haserl
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -27,6 +27,15 @@ HotSpots, and it supports Wireless Protected Access (WPA), the
 standard for secure roamable networks. Authentication, Authorization
 and Accounting (AAA) is handled by your favorite radius server. Read
 more at http://coova.org/ and http://www.chillispot.org/.
+
+%package captive-portal
+Summary:	Default captive portal for Coova
+Group:		Applications
+Requires:	%{name} = %{version}-%{release}
+Requires:	haserl
+
+%description captive-portal
+Default captive portal for Coova.
 
 %package -n python-coova-chilli
 Summary:	Python library for CoovaChilli
@@ -66,8 +75,9 @@ Static coovachilli library.
 Statyczna biblioteka coovachilli.
 
 %prep
-%setup -q -n coova-chilli-%{version}
+%setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -86,11 +96,15 @@ install -d $RPM_BUILD_ROOT/etc/rc.d
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-mv $RPM_BUILD_ROOT/etc/init.d $RPM_BUILD_ROOT/etc/rc.d
+mv $RPM_BUILD_ROOT%{_sysconfdir}/init.d $RPM_BUILD_ROOT/etc/rc.d
 
 %py_ocomp $RPM_BUILD_ROOT%{py_sitescriptdir}
 %py_comp $RPM_BUILD_ROOT%{py_sitescriptdir}
 %py_postclean
+
+install -d $RPM_BUILD_ROOT%{_datadir}/coova-chilli
+rm $RPM_BUILD_ROOT%{_sysconfdir}/chilli/wwwsh
+mv $RPM_BUILD_ROOT%{_sysconfdir}/chilli/www $RPM_BUILD_ROOT%{_datadir}/coova-chilli/www
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -121,17 +135,24 @@ fi
 %attr(755,root,root) %{_sbindir}/chilli_radconfig
 %attr(755,root,root) %{_sbindir}/chilli_response
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/chilli/*
-%attr(755,root,root)%{_sysconfdir}/chilli/www/config.sh
-%if 0
-%dir %{_sysconfdir}/chilli/www
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/chilli/www/*
-%endif
 %{_mandir}/man1/*.1*
 %{_mandir}/man5/*.5*
 %{_mandir}/man8/*.8*
 
+%files captive-portal
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_datadir}/coova-chilli/www/*.sh
+%{_datadir}/coova-chilli/www/*.chi
+%{_datadir}/coova-chilli/www/*.gif
+%{_datadir}/coova-chilli/www/*.html
+%{_datadir}/coova-chilli/www/*.jpg
+%{_datadir}/coova-chilli/www/*.js
+%{_datadir}/coova-chilli/www/*.png
+%{_datadir}/coova-chilli/www/*.tmpl
+
 %files -n python-%{name}
-/usr/lib/python/CoovaChilliLib.py
+%defattr(644,root,root,755)
+%{_libdir}/python/CoovaChilliLib.py
 
 %files devel
 %defattr(644,root,root,755)
