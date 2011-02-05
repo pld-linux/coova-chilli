@@ -152,7 +152,7 @@ fi
 %{_datadir}/coova-chilli/www/*.png
 %{_datadir}/coova-chilli/www/*.tmpl
 
-%files -n python-%{name}
+%files -n python-coova-chilli
 %defattr(644,root,root,755)
 %{_libdir}/python/CoovaChilliLib.py
 
